@@ -5,42 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
-		<script src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		<script>
-			$ ( document ).ready(function(){
-				var url = window.location.href
-				if(url.length>10){
-					url='';
-				}
-				var hash = url.substr(url.indexOf('#')+1) 
-				if(hash == ''){
-					hash = 'home';
-				}
-				alert(hash);
-			});
-			/*
-			var hash = window.location.hash;
-			function loadPage(hash){
-				if (hash==''){
-					hash="home";
-				}
-				$('html, body').animate({scrollTop:0}, '600', 'swing');
-				$('#contenido').load('pages/'+hash+'.html');
-			}
-			$(window).on('hashchange', function(){
-				loadContent(location.hash.slice(1)) 
-			})
-
-			var url = window.location.href
-			var hash = document.URL.substr(document.URL.indexOf('#')+1) 
-
-			if(hash === url){
-				hash = 'home'
-			}
-			$('#contenido').load('pages/'+hash+'.html');/*/
-		</script>
+		
 	</head>
 	<body id="home">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -79,6 +47,31 @@
 		  </div>
 		</nav>
 		<div id="contenido">
+			
 		</div>
 	</body>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var hashtag = location.hash
+			var hash = hashtag.substring(1);
+			if(hash==''){
+				hash='home'
+			}
+			cambiarPagina(hash);
+		});
+		/*
+		$('a').on("click",function(){
+			alert(window.location.hash);
+		})*/
+		$( window ).on( 'hashchange', function( e ) {
+			console.log( 'hash changed'+location.hash );
+			var hashtag = location.hash
+			var hash = hashtag.substring(1);
+			cambiarPagina(hash);
+		} );
+		
+		function cambiarPagina(hash){
+			$('#contenido').load('pages/'+hash+'.html')
+		}
+	 </script>
 </HTML>
